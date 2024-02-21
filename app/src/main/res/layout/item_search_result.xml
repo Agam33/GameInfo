@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="game"
+            type="com.org.gamecatalog.data.model.Game" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="4dp"
+        app:strokeWidth="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/img_game"
+                app:imageUrl='@{game.backgroundImage != null ? game.backgroundImage : ""}'
+                app:error="@{@drawable/no_image}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/txt_no_description" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

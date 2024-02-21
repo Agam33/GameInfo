@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="sample_game_name">Grand Theft Auto V</string>
+    <string name="sample_game_genre">Action</string>
+    <string name="sample_text_platforms">PC, XBox, Playstation 4, Playstation 3, Playstation 2</string>
+    <string name="sample_text_genre">action, indie, adventure, RPG, strategy, shooter, casual</string>
+    <string name="search_bar_hint">search game</string>
+    <string name="txt_no_description">no description</string>
+    <string name="txt_empty_result">No result</string>
+    <string name="txt_read_more">.. Read More</string>
+    <string name="tx_less">Read Less</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+    <string name="txt_not_found_code">404</string>
+    <string name="txt_about_game">About Game</string>
+    <string name="appbar_layout_scrolling_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="txt_exceptional">Exceptional</string>
+    <string name="txt_recommended">Recommended</string>
+    <string name="txt_meh">Meh</string>
+    <string name="txt_skip">Skip</string>
+    <string name="txt_platforms">Platforms</string>
+    <string name="txt_platform">Platform</string>
+    <string name="txt_genre">Genre</string>
+    <string name="txt_rating">Rating</string>
+    <string name="msg_error_network">Error Network</string>
+    <string name="txt_website">Website</string>
+    <string name="txt_publisher">Publisher</string>
+    <string name="txt_favorite">Favorite</string>
+    <string name="txt_empty">Empty</string>
+</resources>

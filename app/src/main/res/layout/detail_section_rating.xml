@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="detailGame"
+            type="com.org.gamecatalog.ui.detailgame.DetailGameItemUiState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_rating"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView"
+            android:paddingStart="4dp"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_exceptional"
+            android:textColor="@color/dark_grey_90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView3"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_recommended"
+            android:textColor="@color/dark_grey_90"
+            app:layout_constraintEnd_toEndOf="@+id/linearProgressIndicator"
+            app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator"
+            app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linearProgressIndicator2"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="4dp"
+            app:indicatorColor="@color/light_blue_10"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView3"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView3"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
+            app:progress="@{detailGame.recommendedVal}"
+            app:trackColor="@color/light_blue_100"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="12dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_meh"
+            android:textColor="@color/dark_grey_90"
+            app:layout_constraintEnd_toEndOf="@+id/linearProgressIndicator2"
+            app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator2"
+            app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator2" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linearProgressIndicator3"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="4dp"
+            app:indicatorColor="@color/yellow_60"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView4"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView4"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView4"
+            app:progress="@{detailGame.mehVal}"
+            app:trackColor="@color/yellow_90"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="12dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView5"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_skip"
+            android:textColor="@color/dark_grey_90"
+            app:layout_constraintEnd_toEndOf="@+id/linearProgressIndicator3"
+            app:layout_constraintStart_toStartOf="@+id/linearProgressIndicator3"
+            app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator3" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:indicatorColor="@color/red_10"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView5"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView5"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView5"
+            app:progress="@{detailGame.skipVal}"
+            app:trackColor="@color/red_100"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="12dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linearProgressIndicator"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:indicatorColor="@color/green_10"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+            app:progress="@{detailGame.exceptionalVal}"
+            app:trackColor="@color/green_100"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="12dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:text='@{String.format("%.1f", detailGame.rating)}'
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{detailGame.totalReview + " Reviews"}'
+            app:layout_constraintEnd_toEndOf="@+id/tv_rating"
+            app:layout_constraintStart_toStartOf="@+id/tv_rating"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rating" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

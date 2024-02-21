@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="description"
+            type="String" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        app:strokeWidth="0dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_title_about_game"
+                android:text="@string/txt_about_game"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_below="@+id/tv_title_about_game"
+                android:layout_marginTop="8dp"
+                android:id="@+id/tv_description"
+                android:textSize="14sp"
+                android:text="@{description}"
+                android:textColor="@color/dark_grey_50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

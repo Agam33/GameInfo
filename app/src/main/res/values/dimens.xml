@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_platforms">8dp</dimen>
+    <dimen name="item_card_platform">8dp</dimen>
+</resources>

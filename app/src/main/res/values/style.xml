@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="App.Widget.SearchBar.Style" parent="Widget.Material3.SearchBar.Outlined">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchBar</item>
+        <item name="android:textAppearance">@style/App.Widget.SearchBar.Text.Style</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="navigationIcon">@drawable/baseline_search_24</item>
+        <item name="navigationIconTint">@color/black</item>
+    </style>
+
+    <style name="App.Widget.SearchView.Style" parent="Widget.Material3.SearchView">
+        <item name="backgroundTint">@color/dark_grey_10</item>
+        <item name="android:textAppearance">@style/App.Widget.SearchView.Style.Text.Style</item>
+        <item name="dividerColor">@color/white</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="ThemeOverlay.App.SearchBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorOnSurfaceVariant">@color/black</item>
+    </style>
+
+    <style name="App.Widget.SearchView.Style.Text.Style" parent="TextAppearance.Material3.SearchView">
+        <item name="android:textColorHint">@color/dark_grey_90</item>
+    </style>
+
+    <style name="App.Widget.SearchBar.Text.Style" parent="TextAppearance.Material3.SearchBar">
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+
+    <style name="ThemeOverlay.App.DetailGameDialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="colorSurface">@color/black</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/dark_grey_90</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+</resources>

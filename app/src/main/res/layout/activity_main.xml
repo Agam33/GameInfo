@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tvNoResultState"
+            type="Boolean" />
+        <variable
+            name="loadingState"
+            type="Boolean" />
+        <variable
+            name="rvResultState"
+            type="Boolean" />
+        <variable
+            name="rvSearchKeywordState"
+            type="Boolean" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.MainActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.search.SearchBar
+                style="@style/App.Widget.SearchBar.Style"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/search_bar_hint"
+                app:menu="@menu/main_menu"
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+            <com.google.android.material.search.SearchView
+                style="@style/App.Widget.SearchView.Style"
+                android:hint="@string/search_bar_hint"
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        app:isVisible="@{tvNoResultState}"
+                        android:text="@string/txt_empty_result"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:id="@+id/tv_result_count"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="36sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/progress_bar"
+                        app:isVisible="@{loadingState}"
+                        app:indicatorColor="@color/green_700"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        app:isVisible="@{rvResultState}"
+                        android:layout_marginTop="8dp"
+                        tools:itemCount="20"
+                        tools:listitem="@layout/item_search_result"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2"
+                        android:id="@+id/rv_search_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_search_keyword"
+                        app:isVisible="@{rvSearchKeywordState}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </com.google.android.material.search.SearchView>
+
+            <HorizontalScrollView
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:scrollbars="none"
+                android:id="@+id/list_genre"
+                android:layout_below="@id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <com.org.gamecatalog.customview.GameChipGroup
+                    android:id="@+id/chip_group"
+                    app:selectionRequired="true"
+                    app:singleLine="true"
+                    app:singleSelection="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="64dp" />
+
+            </HorizontalScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:layout_below="@id/list_genre"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:itemCount="20"
+                tools:listitem="@layout/item_game"
+                android:id="@+id/rv_games"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

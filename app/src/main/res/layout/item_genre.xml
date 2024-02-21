@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.chip.Chip
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium"
+        android:layout_margin="4dp"
+        android:textColor="@color/white"
+        app:chipBackgroundColor="@color/black"
+        app:chipStrokeWidth="0dp"
+        android:text="@string/sample_game_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp">
+
+    </com.google.android.material.chip.Chip>
+</layout>
