@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Game Info</string>
     <string name="sample_game_name">Grand Theft Auto V</string>
     <string name="sample_game_genre">Action</string>
     <string name="sample_text_platforms">PC, XBox, Playstation 4, Playstation 3, Playstation 2</string>
@@ -26,4 +26,5 @@
     <string name="txt_publisher">Publisher</string>
     <string name="txt_favorite">Favorite</string>
     <string name="txt_empty">Empty</string>
+    <string name="msg_check_connection">Please check your connection!</string>
 </resources>

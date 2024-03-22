@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.org.gamecatalog.R
 import com.org.gamecatalog.data.model.Favorite
 import com.org.gamecatalog.databinding.ActivityFavoriteBinding
-import com.org.gamecatalog.ui.adapter.FavoriteAdapter
+import com.org.gamecatalog.adapter.FavoriteAdapter
 import com.org.gamecatalog.ui.base.BaseActivity
 import com.org.gamecatalog.ui.base.UiState
 import com.org.gamecatalog.ui.detailgame.DetailGameActivity

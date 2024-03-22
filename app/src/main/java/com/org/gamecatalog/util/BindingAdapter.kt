@@ -1,4 +1,4 @@
-package com.org.gamecatalog.ui.util
+package com.org.gamecatalog.util
 
 import android.graphics.drawable.Drawable
 import android.view.View

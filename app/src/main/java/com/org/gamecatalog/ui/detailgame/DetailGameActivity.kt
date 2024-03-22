@@ -12,9 +12,9 @@ import com.org.gamecatalog.data.model.Favorite
 import com.org.gamecatalog.databinding.ActivityDetailGameBinding
 import com.org.gamecatalog.ui.base.BaseActivity
 import com.org.gamecatalog.ui.base.UiState
-import com.org.gamecatalog.ui.util.addSuffixAndClickAble
-import com.org.gamecatalog.ui.util.clickAble
-import com.org.gamecatalog.ui.util.showLongToast
+import com.org.gamecatalog.util.addSuffixAndClickAble
+import com.org.gamecatalog.util.clickAble
+import com.org.gamecatalog.util.showLongToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime

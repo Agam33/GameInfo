@@ -1,4 +1,4 @@
-package com.org.gamecatalog.data.paging
+package com.org.gamecatalog.paging
 
 import android.net.Uri
 import androidx.paging.PagingSource
@@ -7,6 +7,7 @@ import com.org.gamecatalog.data.datasource.network.client.GameClient
 import com.org.gamecatalog.data.mapper.toModel
 import com.org.gamecatalog.data.model.Game
 import timber.log.Timber
+import java.io.IOException
 
 class ListGameByGenrePagingSource(
   private val gameClient: GameClient,
@@ -29,14 +30,17 @@ class ListGameByGenrePagingSource(
         prevKey = null,
         nextKey = nextPage
       )
-    } catch (e: Exception) {
-      Timber.tag("ListGamePagingSource-load").d("Error: ${e.message}")
+    } catch (e: IOException) {
+      Timber.tag("ListGamePagingSource-load").e("Error: ${e.message}")
       LoadResult.Error(e)
     }
   }
 
   override fun getRefreshKey(state: PagingState<Int, Game>): Int? {
-    return null
+    return state.anchorPosition?.let { anchorPosition ->
+      val anchorPage = state.closestPageToPosition(anchorPosition)
+      anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+    }
   }
 
   companion object {

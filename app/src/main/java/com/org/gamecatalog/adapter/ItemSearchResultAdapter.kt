@@ -1,4 +1,4 @@
-package com.org.gamecatalog.ui.adapter
+package com.org.gamecatalog.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,25 +8,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.org.gamecatalog.R
 import com.org.gamecatalog.data.model.Game
-import com.org.gamecatalog.databinding.ItemGameBinding
+import com.org.gamecatalog.databinding.ItemSearchResultBinding
 
-class GameAdapter: PagingDataAdapter<Game, GameAdapter.GameViewHolder>(gameComparator) {
+class ItemSearchResultAdapter: PagingDataAdapter<Game, ItemSearchResultAdapter.ItemSearchResult>(
+  searchResultComparator
+) {
 
   var onItemClickListener: OnItemClickListener? = null
 
-  override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+  override fun onBindViewHolder(holder: ItemSearchResult, position: Int) {
     getItem(position)?.let {
       holder.bind(it)
     }
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder =
-    GameViewHolder(
-      DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_game, parent, false)
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemSearchResult =
+    ItemSearchResult(
+      DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_search_result, parent, false)
     )
 
-  inner class GameViewHolder(
-    private val binding: ItemGameBinding
+  inner class ItemSearchResult(
+    private val binding: ItemSearchResultBinding
   ): RecyclerView.ViewHolder(binding.root) {
     fun bind(game: Game) {
       binding.game = game
@@ -39,7 +41,7 @@ class GameAdapter: PagingDataAdapter<Game, GameAdapter.GameViewHolder>(gameCompa
   }
 
   companion object {
-    private val gameComparator = object : DiffUtil.ItemCallback<Game>() {
+    private val searchResultComparator = object : DiffUtil.ItemCallback<Game>() {
       override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
         return oldItem.id == newItem.id
       }

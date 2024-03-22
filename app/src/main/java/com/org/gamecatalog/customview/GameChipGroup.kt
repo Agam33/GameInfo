@@ -27,6 +27,10 @@ class GameChipGroup: ChipGroup {
   )
 
   init {
+    createFirstChip()
+  }
+
+  private fun createFirstChip() {
     val firstChip = createChip(ChipModel(-1, "All", "All"))
     chipContainer[firstChip.id] = firstChip
     addView(firstChip)
@@ -79,6 +83,12 @@ class GameChipGroup: ChipGroup {
     for(chipModel in chipModels) {
         addChipChild(chipModel)
     }
+  }
+
+  fun clear() {
+    chipContainer.clear()
+    this.removeAllViews()
+    createFirstChip()
   }
 
   data class ChipModel(val id: Int, val title: String, val slug: String)

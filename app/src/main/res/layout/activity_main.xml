@@ -16,6 +16,9 @@
         <variable
             name="rvSearchKeywordState"
             type="Boolean" />
+        <variable
+            name="rvGameState"
+            type="Boolean" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -45,7 +48,6 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -113,7 +115,7 @@
             </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:visibility="gone"
                 android:layout_below="@id/list_genre"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
@@ -122,6 +124,27 @@
                 android:id="@+id/rv_games"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <include
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:id="@+id/error_layout"
+                layout="@layout/error_message_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/list_game_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/list_genre"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:indeterminate="true"
+                app:indicatorColor="@color/green_10"
+                app:indicatorSize="60dp"
+                app:trackColor="@color/green_400" />
 
         </RelativeLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
