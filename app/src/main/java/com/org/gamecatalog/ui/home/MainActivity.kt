@@ -6,36 +6,39 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.addCallback
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.search.SearchView
 import com.org.gamecatalog.R
+import com.org.gamecatalog.adapter.GameAdapter
+import com.org.gamecatalog.adapter.ItemSearchKeywordAdapter
+import com.org.gamecatalog.adapter.ItemSearchResultAdapter
 import com.org.gamecatalog.customview.GameChipGroup
 import com.org.gamecatalog.data.model.Game
 import com.org.gamecatalog.data.model.SearchKeyword
 import com.org.gamecatalog.databinding.ActivityMainBinding
-import com.org.gamecatalog.ui.adapter.GameAdapter
-import com.org.gamecatalog.ui.adapter.ItemSearchKeywordAdapter
-import com.org.gamecatalog.ui.adapter.ItemSearchResultAdapter
 import com.org.gamecatalog.ui.base.BaseActivity
+import com.org.gamecatalog.ui.base.UiState
 import com.org.gamecatalog.ui.detailgame.DetailGameActivity
 import com.org.gamecatalog.ui.favorite.FavoriteActivity
-import com.org.gamecatalog.ui.util.showShortToast
+import com.org.gamecatalog.util.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
   private val viewModel: HomeViewModel by viewModels()
 
-  private val gameAdapter = GameAdapter()
-  private val itemSearchResultAdapter = ItemSearchResultAdapter()
-  private val searchKeywordAdapter = ItemSearchKeywordAdapter()
+  @Inject lateinit var gameAdapter: GameAdapter
+  @Inject lateinit var itemSearchResultAdapter: ItemSearchResultAdapter
+  @Inject lateinit var searchKeywordAdapter: ItemSearchKeywordAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -103,7 +106,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
       false
     }
 
-    searchView.addTransitionListener { _, previousState, newState ->
+    searchView.addTransitionListener { _, previousState, _ ->
       when(previousState) {
         SearchView.TransitionState.HIDDEN -> {
           rvResultState = false
@@ -155,9 +158,34 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
   }
 
   private fun setupListGame() = with(binding) {
+    gameAdapter.addLoadStateListener { loadState ->
+      if(loadState.refresh is LoadState.Loading) {
+        listGameProgressBar.isVisible = true
+        rvGames.isVisible = false
+        errorLayout.isVisible = false
+      } else {
+        val error = when {
+          loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+          loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+          loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+          else -> null
+        }
+
+        if(error != null) {
+          listGameProgressBar.isVisible = false
+          rvGames.isVisible = false
+          errorLayout.isVisible = true
+        } else {
+          listGameProgressBar.isVisible = false
+          rvGames.isVisible = true
+          errorLayout.isVisible = false
+        }
+      }
+    }
+
     lifecycleScope.launch {
-      viewModel.listGameState.collectLatest { pagingData ->
-        gameAdapter.submitData(pagingData)
+      viewModel.listGameState.collectLatest { data ->
+        gameAdapter.submitData(data)
       }
     }
 
@@ -186,10 +214,19 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     lifecycleScope.launch {
-      viewModel.listGenreState.collect { list ->
-        chipGroup.submit(list.map { genre ->
-          chipGroup.toChipModel(genre.id, genre.name ?: "-", genre.slug ?: "")
-        })
+      viewModel.listGenreState.collect { uiState ->
+        when(uiState) {
+          is UiState.Loading -> {}
+          is UiState.Success -> {
+            chipGroup.submit(uiState.data.map { genre ->
+              chipGroup.toChipModel(genre.id, genre.name ?: "-", genre.slug ?: "")
+            })
+          }
+          is UiState.Error -> {
+            chipGroup.clear()
+          }
+          else -> {}
+        }
       }
     }
   }

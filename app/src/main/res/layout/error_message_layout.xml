@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_error"
+        android:src="@drawable/ic_error"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_err_msg"
+        android:text="@string/msg_check_connection"
+        android:textSize="18sp"
+        android:textColor="@color/dark_grey_50"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+</LinearLayout>

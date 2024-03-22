@@ -1,4 +1,4 @@
-package com.org.gamecatalog.ui.util
+package com.org.gamecatalog.util
 
 import android.content.Context
 import android.text.SpannableStringBuilder

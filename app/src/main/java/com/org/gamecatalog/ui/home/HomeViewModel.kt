@@ -9,21 +9,26 @@ import com.org.gamecatalog.data.model.SearchKeyword
 import com.org.gamecatalog.data.repository.game.GameRepository
 import com.org.gamecatalog.data.repository.genre.GenreRepository
 import com.org.gamecatalog.data.repository.searchkeyword.SearchKeywordRepository
+import com.org.gamecatalog.ui.base.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
   private val gameRepository: GameRepository,
   private val genreRepository: GenreRepository,
-  private val searchKeywordRepository: SearchKeywordRepository
+  private val searchKeywordRepository: SearchKeywordRepository,
+  private val okHttpClient: OkHttpClient,
 ): ViewModel() {
 
-  private var _listGenreState = MutableStateFlow<List<Genre>>(emptyList())
-  val listGenreState: StateFlow<List<Genre>> = _listGenreState
+  private var _listGenreState = MutableStateFlow<UiState<List<Genre>>>(UiState.Loading)
+  val listGenreState: StateFlow<UiState<List<Genre>>> = _listGenreState
 
   private var _listGameState = MutableStateFlow<PagingData<Game>>(PagingData.empty())
   val listGameState: StateFlow<PagingData<Game>> = _listGameState
@@ -36,7 +41,8 @@ class HomeViewModel @Inject constructor(
 
   fun searchGame(searchQuery: String) {
     viewModelScope.launch {
-      gameRepository.searchGame(searchQuery).collect {
+      gameRepository.searchGame(searchQuery)
+        .collect {
         _searchGameState.emit(it)
       }
     }
@@ -45,14 +51,20 @@ class HomeViewModel @Inject constructor(
   fun getListGame(genreQuery: String?) {
     viewModelScope.launch {
       gameRepository.getListGameByGenre(genreQuery).collect {
-        _listGameState.value = it
+          _listGameState.emit(it)
       }
     }
   }
 
   fun getListGenre() {
     viewModelScope.launch {
-      _listGenreState.emit(genreRepository.getListGenre())
+      try {
+        val data = genreRepository.getListGenre()
+        _listGenreState.emit(UiState.Success(data))
+      } catch (e: Exception) {
+        _listGenreState.emit(UiState.Error(e.message ?: ""))
+        Timber.e(e)
+      }
     }
   }
 

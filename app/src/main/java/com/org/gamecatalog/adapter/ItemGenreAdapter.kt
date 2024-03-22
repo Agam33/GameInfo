@@ -1,4 +1,4 @@
-package com.org.gamecatalog.ui.adapter
+package com.org.gamecatalog.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

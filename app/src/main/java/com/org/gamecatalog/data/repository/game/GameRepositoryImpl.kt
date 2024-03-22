@@ -7,8 +7,8 @@ import com.org.gamecatalog.data.datasource.network.client.GameClient
 import com.org.gamecatalog.data.mapper.toModel
 import com.org.gamecatalog.data.model.DetailGame
 import com.org.gamecatalog.data.model.Game
-import com.org.gamecatalog.data.paging.ListGameByGenrePagingSource
-import com.org.gamecatalog.data.paging.SearchGamePagingSource
+import com.org.gamecatalog.paging.ListGameByGenrePagingSource
+import com.org.gamecatalog.paging.SearchGamePagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

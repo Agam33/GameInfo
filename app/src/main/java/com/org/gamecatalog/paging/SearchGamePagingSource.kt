@@ -1,4 +1,4 @@
-package com.org.gamecatalog.data.paging
+package com.org.gamecatalog.paging
 
 import android.net.Uri
 import androidx.paging.PagingSource
@@ -24,8 +24,8 @@ class SearchGamePagingSource(
       }
       val result = networkResponse.result.map { it.toModel() }
       Timber.tag("ListGamePagingSource-load").d("Result size: ${result.size}}")
-      LoadResult.Page (
-        data =  result,
+      LoadResult.Page(
+        data = result,
         prevKey = null,
         nextKey = nextPage
       )
@@ -34,5 +34,10 @@ class SearchGamePagingSource(
     }
   }
 
-  override fun getRefreshKey(state: PagingState<Int, Game>): Int? = null
+  override fun getRefreshKey(state: PagingState<Int, Game>): Int? {
+    return state.anchorPosition?.let { anchorPosition ->
+      val anchorPage = state.closestPageToPosition(anchorPosition)
+      anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+    }
+  }
 }

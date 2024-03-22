@@ -1,4 +1,4 @@
-package com.org.gamecatalog.di
+package com.org.gamecatalog.di.repository
 
 import com.org.gamecatalog.data.repository.favorite.FavoriteRepository
 import com.org.gamecatalog.data.repository.favorite.FavoriteRepositoryImpl

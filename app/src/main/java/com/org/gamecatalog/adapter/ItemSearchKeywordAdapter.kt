@@ -1,4 +1,4 @@
-package com.org.gamecatalog.ui.adapter
+package com.org.gamecatalog.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,9 @@ import com.org.gamecatalog.R
 import com.org.gamecatalog.data.model.SearchKeyword
 import com.org.gamecatalog.databinding.ItemSearchKeywordBinding
 
-class ItemSearchKeywordAdapter: ListAdapter<SearchKeyword, ItemSearchKeywordAdapter.MViewHolder>(searchKeywordComparator) {
+class ItemSearchKeywordAdapter: ListAdapter<SearchKeyword, ItemSearchKeywordAdapter.MViewHolder>(
+    searchKeywordComparator
+) {
 
   var onKeywordClickListener: OnKeywordClickListener? = null
   var onDeleteClickListener: OnDeleteClickListener? = null
